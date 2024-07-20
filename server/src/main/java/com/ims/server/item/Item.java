@@ -1,47 +1,70 @@
 package com.ims.server.item;
 
-import javax.persistence.*;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
-@Data
-@EntityListeners(AuditingEntityListener.class)
 public class Item {
 
-	@Id
-	@GeneratedValue
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@Column(nullable = false, unique = true)
-	private String code;
+    private String code;
+    private String name;
+    private BigDecimal cost;
+    private BigDecimal price;
+    private Long quantity;
 
-	@Column(nullable = false)
-	private String name;
+    public Long getId() {
+        return id;
+    }
 
-	@Column(nullable = false)
-	private BigDecimal cost;
+    public String getCode() {
+        return code;
+    }
 
-	@Column(nullable = false)
-	private BigDecimal price;
+    public void setCode(String code) {
+        this.code = code;
+    }
 
-	@Column(nullable = false)
-	private Long quantity;
+    public String getName() {
+        return name;
+    }
 
-	@JsonIgnore
-	@CreatedDate
-	private LocalDateTime createdDate;
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	@JsonIgnore
-	@LastModifiedDate
-	private LocalDateTime lastModifiedDate;
+    public BigDecimal getCost() {
+        return cost;
+    }
 
-	Item() {
+    public void setCost(BigDecimal cost) {
+        this.cost = cost;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Long getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantitye(Long quantity) {
+        this.quantity = quantity;
+    }
+
+    Item() {
 		this.code = "IMS-" + this.id;
 		this.name = "IMS-Item";
 		this.cost = BigDecimal.ZERO;

@@ -4,11 +4,14 @@ echo "Starting the build . . . ";
 
 # Build the angular client app
 cd ./client/;
+nvm use 16;
+npm install;
 sudo ng build --prod
 cd ../
 
 # Build the spring boot server app
 cd ./server/;
+sudo ./mvnw clean package;
 sudo ./mvnw package
 cd ../
 

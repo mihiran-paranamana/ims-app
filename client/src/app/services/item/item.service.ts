@@ -22,7 +22,7 @@ export class ItemService {
   getItems(url: string): Observable<Item[]> {
     return this.http.get<ItemsResponse>(url)
       .pipe(
-        map(response => response._embedded.itemList),
+        map(response => response),
         catchError(error => this.handleError(error))
       );
   }

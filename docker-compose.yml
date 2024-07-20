@@ -23,7 +23,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - 4201:4201
-    restart: always
     container_name: ims_server
     networks:
       - ims-network
